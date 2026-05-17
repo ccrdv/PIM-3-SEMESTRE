@@ -1,0 +1,6 @@
+@ComercialMorro.API_HostAddress = http://localhost:5012
+
+GET {{ComercialMorro.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
