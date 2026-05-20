@@ -1,0 +1,1176 @@
+/* Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f8fafc;
+}
+
+.container-principal {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Menu Lateral */
+.menu-lateral {
+    width: 250px;
+    background-color: #1e3a8a;
+    color: white;
+    padding: 20px;
+}
+
+.logo h1 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.logo span {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.lista-menu {
+    list-style: none;
+    margin-top: 40px;
+}
+
+.item-menu {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.item-menu.ativo {
+    background-color: #2563eb;
+}
+
+.item-menu:hover {
+    background-color: #3b82f6;
+}
+
+/* Conteúdo Principal */
+.conteudo {
+    flex: 1;
+    padding: 40px;
+}
+
+.cabecalho h2 {
+    font-size: 1.8rem;
+    color: #111827;
+}
+
+.cabecalho p {
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* Grid de Cards */
+.grade-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card-info {
+    background: white;
+    flex: 1;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-card {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.valor-card {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+    margin: 5px 0;
+}
+
+.subtexto-card {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* Cores dos Quadrados de Ícone (Substituindo ícones reais) */
+.icone {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.fa-dollar-sign {
+    padding-left: 4px;
+    padding-top: 6px;
+    font-size: 30px;
+}
+
+#iconFiado {
+    padding-left: 4px;
+    padding-top: 6px;
+    font-size: 30px;
+}
+
+.fa-triangle-exclamation {
+    padding-left: 4px;
+    padding-top: 6px;
+    font-size: 30px;
+}
+
+#iconCadastrados {
+    padding-left: 4px;
+    padding-top: 6px;
+    font-size: 28px;
+}
+
+.verde { background-color: #10b981; }
+.amarelo { background-color: #f59e0b; }
+.vermelho { background-color: #ef4444; }
+.azul-claro { background-color: #3b82f6; }
+
+/* Seção de Baixo */
+.secao-inferior {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.bloco-acoes, .bloco-vendas {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.bloco-acoes { flex: 1; }
+.bloco-vendas { flex: 1.5; }
+
+h3 {
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+.botao-acao {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.acao-verde { background-color: #f0fdf4; color: #166534; border-left: 5px solid #22c55e; }
+.acao-azul { background-color: #eff6ff; color: #1e40af; border-left: 5px solid #3b82f6; }
+.acao-roxo { background-color: #faf5ff; color: #6b21a8; border-left: 5px solid #a855f7; }
+
+.botao-acao strong { display: block; font-size: 0.95rem; }
+.botao-acao p { font-size: 0.8rem; opacity: 0.8; }
+
+.vazio {
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+
+
+
+
+/* --- Estilos Específicos da Tela de Nova Venda --- */
+
+.layout-venda {
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+    align-items: flex-start;
+}
+
+.coluna-esquerda {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.coluna-direita {
+    flex: 1;
+}
+
+.cartao-venda {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.cartao-venda h3 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+/* Campos de Formulário */
+.grupo-campo {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-campo label {
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.campo-texto, .campo-selecao {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #f3f4f6;
+    outline: none;
+    color: #4b5563;
+}
+
+.linha-formulario {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end; /* Alinha o botão com os campos */
+}
+
+.flex-3 { flex: 3; }
+.flex-1 { flex: 1; }
+
+/* Botões */
+.botao-adicionar {
+    background-color: #020617;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 43px; /* Ajuste para alinhar com os inputs */
+}
+
+.botao-finalizar {
+    width: 100%;
+    background-color: #86efac;
+    color: #166534;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-finalizar:hover {
+    background-color: #4ade80;
+}
+
+/* Carrinho e Totais */
+.carrinho-container {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrinho-vazio {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9ca3af;
+}
+
+.divisor {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 20px 0;
+}
+
+.linha-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #4b5563;
+}
+
+.destaque-total {
+    font-size: 1.2rem;
+    color: #111827;
+}
+
+.destaque-total strong {
+    color: #22c55e;
+}
+
+
+
+
+/* --- Estilos Específicos da Tela de Estoque --- */
+
+/* Ajuste para os cards com ícone lateral */
+.icone-circular {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 15px;
+    opacity: 0.8;
+}
+
+.fa-box-open {
+    padding-left: 4px;
+    padding-top: 6px;
+    font-size: 30px;
+}
+
+.fa-exclamation{
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+/* Barra de Filtros */
+.barra-filtros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    margin-top: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.campo-busca {
+    padding: 10px 15px;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    width: 350px;
+}
+
+.botoes-filtro {
+    display: flex;
+    gap: 10px;
+}
+
+.filtro {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.filtro.ativo {
+    background-color: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+/* barra de filtros em telas pequenas */
+@media (max-width: 768px) {
+    .barra-filtros {
+        flex-direction: column; /* Empilha a busca em cima dos botões */
+        align-items: stretch;    /* Faz os itens ocuparem a largura total */
+        gap: 15px;
+    }
+
+    .campo-busca {
+        width: 100%;            /* Remove os 350px fixos e ocupa 100% do container */
+    }
+
+    .botoes-filtro {
+        display: flex;
+        flex-wrap: wrap;        /* Se houver muitos botões, eles quebram para a linha de baixo */
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .filtro {
+        flex: 1;                /* Faz os botões crescerem por igual para preencher a linha */
+        text-align: center;
+        min-width: 80px;        /* Evita que fiquem esmagados demais */
+    }
+}
+
+/* Estilo da Tabela */
+.container-tabela {
+    margin-top: 25px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+}
+
+.tabela-estoque {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela-estoque th {
+    background-color: #f9fafb;
+    padding: 15px;
+    font-size: 0.75rem;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabela-estoque td {
+    padding: 15px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.sub-texto {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.etiqueta {
+    padding: 4px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #4b5563;
+}
+
+/* Status e Cores de Texto */
+.status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+}
+
+.status-normal { background-color: #10b981; }
+.status-alerta { background-color: #f59e0b; }
+
+.texto-verde { color: #10b981; font-weight: bold; }
+.texto-laranja { color: #f59e0b; font-weight: bold; }
+
+
+
+
+
+/* --- Estilos Específicos da Tela de Clientes --- */
+
+.cabecalho-clientes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#btnNovoCliente {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* tela cadastro cliente */
+/* 1. O Fundo (Overlay) */
+.modal {
+    display: none; /* Mantém escondido até o clique */
+    position: fixed;
+    z-index: 9999; /* Garante que fique acima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo preto suave */
+    backdrop-filter: blur(2px); /* Leve desfoque no fundo */
+}
+
+/* 2. A Caixa de Conteúdo */
+.modal_content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    font-family: sans-serif;
+}
+
+/* 3. Título e Botão de Fechar (X) */
+.modal_content h2 {
+    margin-top: 0;
+    color: #1a1a1a;
+    font-size: 1.5rem;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* 4. Estilização do Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+    margin-bottom: -10px;
+}
+
+input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #fff;
+}
+
+/* 5. Botões de Ação */
+.form-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-save {
+    background-color: #00c853;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #00a846;
+}
+
+.btn-cancel {
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #f0f0f0;
+}
+
+/* Ajuste do ícone nos cards superiores */
+.icone-quadrado {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-right: 15px;
+    opacity: 0.2; /* Efeito suave de fundo igual à imagem */
+}
+
+.fa-user {
+    padding-left: 4px;
+    padding-top: 6px;
+    font-size: 30px;
+}
+
+.fa-wallet{
+    padding-left: 4px;
+    padding-top: 6px;
+    font-size: 30px;
+}
+
+.fa-circle-user {
+    padding-right: 3px;
+    padding-top: 2.5px;
+    font-size: 30px;
+}
+
+/* Busca em largura total */
+.barra-busca-larga {
+    margin-top: 25px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.campo-busca-clientes {
+    width: 100%;
+    padding: 12px;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+/* Listagem de Cards de Clientes */
+.grade-listagem-clientes {
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.card-perfil-cliente {
+    background: white;
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.topo-card-cliente {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.info-nome {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-cliente {
+    width: 35px;
+    height: 35px;
+    background-color: #dbeafe;
+    border-radius: 50%;
+}
+
+.acoes-cliente {
+    display: flex;
+    gap: 8px;
+}
+
+.botao-editar, .botao-excluir {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.botao-excluir {
+    color: #ef4444;
+}
+
+.detalhes-cliente p {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+
+
+
+
+/* --- Estilos Específicos da Tela de Produtos --- */
+
+.cabecalho-produtos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.btnNovoProduto {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+
+/* tela novo produto */
+/* =============== MODAL NOVO PRODUTO =============== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal_content {
+    background: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    position: relative;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Título */
+.modal_content h2 {
+    margin: 0;
+    padding: 24px 28px 12px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Botão Fechar (X) */
+.close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    font-size: 30px;
+    font-weight: 300;
+    color: #64748b;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+}
+
+.close:hover {
+    color: #ef4444;
+}
+
+/* Formulário */
+#formNovoProduto {
+    padding: 0 28px 28px 28px;
+}
+
+/* Grupos de campos */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Inputs e Selects */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* Linhas com dois campos */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+/* Botões */
+.form-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.btn-save {
+    flex: 1;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.btn-save:hover {
+    background-color: #16a34a;
+}
+
+.btn-cancel {
+    flex: 1;
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+
+.container-tabela-produtos {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+}
+
+.tabela-listagem {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela-listagem th {
+    background-color: #f9fafb;
+    padding: 18px 15px;
+    font-size: 0.75rem;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tabela-listagem td {
+    padding: 15px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 0.9rem;
+    color: #374151;
+    vertical-align: middle;
+}
+
+/* Coluna de Ações na Tabela */
+.acoes-tabela {
+    display: flex;
+    gap: 10px;
+}
+
+.botao-acao-tabela {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e5e7eb;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #374151;
+}
+
+.botao-acao-tabela.excluir {
+    color: #ef4444;
+}
+
+.botao-acao-tabela:hover {
+    background-color: #f9fafb;
+}
+
+
+
+
+
+
+/* --- Estilos Específicos da Tela de Fiados --- */
+
+/* Cores suaves para os fundos dos ícones dos cards */
+.amarelo-claro { background-color: #fef3c7; color: #d97706; }
+.vermelho-claro { background-color: #fee2e2; color: #dc2626; }
+.azul-claro-fundo { background-color: #dbeafe; color: #2563eb; }
+
+.simbolo-dinheiro, .simbolo-usuario, .simbolo-calendario {
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Layout dos blocos de pendência */
+.grade-fiados {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.bloco-pendencia {
+    background: white;
+    flex: 1;
+    min-height: 300px;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+}
+
+.centro-vazio {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+/* Círculo verde de "check" (Sucesso) */
+.circulo-sucesso {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #22c55e;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #22c55e;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* --- Responsividade para Dispositivos Móveis --- */
+
+@media (max-width: 768px) {
+    /* Ajusta o container principal para empilhar os elementos verticalmente */
+    .container-principal {
+        flex-direction: column;
+    }
+
+    /* Transforma o menu lateral em uma barra horizontal no topo */
+    .menu-lateral {
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .lista-menu {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: row; /* Alinha os itens do menu em linha */
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .item-menu {
+        margin-bottom: 0;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* ajusta o conteúdo para ocupar a tela cheia e remove paddings excessivos */
+    .conteudo {
+        padding: 20px;
+    }
+
+    /* força todos os grids e layouts flexíveis a ficarem um embaixo do outro */
+    .grade-cards, 
+    .secao-inferior, 
+    .layout-venda, 
+    .linha-formulario, 
+    .barra-filtros, 
+    .grade-listagem-clientes, 
+    .grade-fiados {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Ajusta larguras de elementos que eram fixas ou proporcionais */
+    .card-info, 
+    .bloco-acoes, 
+    .bloco-vendas, 
+    .coluna-esquerda, 
+    .coluna-direita, 
+    .card-perfil-cliente, 
+    .bloco-pendencia {
+        width: 100%;
+        flex: none;
+    }
+
+    .campo-busca, 
+    .campo-busca-clientes {
+        width: 100%;
+    }
+
+    /* Permite rolagem horizontal em tabelas para não quebrar o layout */
+    .container-tabela, 
+    .container-tabela-produtos {
+        overflow-x: auto;
+    }
+
+    .tabela-estoque, 
+    .tabela-listagem {
+        min-width: 600px; /* Mantém a leitura da tabela via scroll */
+    }
+
+    /* Ajustes de cabeçalhos */
+    .cabecalho-clientes, 
+    .cabecalho-produtos {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .botao-novo-cliente, 
+    .botao-novo-produto {
+        width: 100%;
+    }
+}
+
+.section_login {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* caixa principal do formulário */
+        .container-login {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        .container-login h2 {
+            color: #1a3a8a;
+            margin-bottom: 20px;
+        }
+
+        /* estilo dos campos de entrada */
+        .campo {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            /* garante que o padding não aumente o tamanho do campo */
+        }
+
+
+        .botao-azul {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .botao-azul:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* trocar entre login e registro */
+        .trocar-tela {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .trocar-tela a {
+            color: #2563eb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* esconder a tela de registro inicialmente */
+        .escondido {
+            display: none;
+        }
