@@ -8,6 +8,7 @@ namespace ComercialMorro.API.Services.Interfaces
         Task<IEnumerable<ProdutoDto>> GetAllAsync();
         Task<ProdutoDto?> GetByIdAsync(int id);
         Task<ProdutoDto> CreateAsync(ProdutoCreateDto dto);
+        Task<IEnumerable<ProdutoDto>> BuscarAsync(string termo);
         Task UpdateAsync(int id, ProdutoCreateDto dto);
         Task DeleteAsync(int id);
     }

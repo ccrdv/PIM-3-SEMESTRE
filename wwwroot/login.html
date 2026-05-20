@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Comercial Morro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="section_login">
+        <div class="container-login">
+            <!--  LOGIN -->
+            <div id="tela-login">
+                <h2>Comercial Morro</h2>
+                <p>Faça login para continuar</p>
+
+                <div class="campo">
+                    <label>Usuário</label>
+                    <input type="text" id="login-usuario" onkeypress="if(event.key === 'Enter') entrar()">
+                </div>
+
+                <div class="campo">
+                    <label>Senha</label>
+                    <input type="password" id="login-senha" onkeypress="if(event.key === 'Enter') entrar()">
+                </div>
+
+                <button class="botao-azul" onclick="entrar()">Entrar</button>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>

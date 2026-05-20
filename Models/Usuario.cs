@@ -1,13 +1,29 @@
-﻿namespace ComercialMorro.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ComercialMorro.API.Models
 {
+    [Table("USUARIO")]
     public class Usuario
     {
+        [Key]
+        [Column("ID_USUARIO")]
         public int IdUsuario { get; set; }
-        public string Username { get; set; } = string.Empty;
-        public string Senha { get; set; } = string.Empty; // Em produção deve ser hash
-        public string Status { get; set; } = "Ativo";
-        public int IdFuncionario { get; set; }
 
-        public Funcionario? Funcionario { get; set; }
+        [Column("USERNAME")]
+        public string Username { get; set; } = string.Empty;
+
+        [Column("SENHA")]
+        public string Senha { get; set; } = string.Empty;
+
+        [Column("STATUS")]
+        public string Status { get; set; } = "Ativo";
+
+        [Column("ID_FUNCIONARIO")]
+        public int? IdFuncionario { get; set; }
+
+        // Navegação
+        [ForeignKey("IdFuncionario")]
+        public virtual Funcionario? Funcionario { get; set; }
     }
 }

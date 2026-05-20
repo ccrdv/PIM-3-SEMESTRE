@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comercial Morro - Produtos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+</head>
+
+<body>
+
+    <div class="container-principal">
+        <nav class="menu-lateral">
+            <div class="logo">
+                <h1>COMERCIAL MORRO</h1>
+                <span>Sistema de Vendas</span>
+            </div>
+            <ul class="lista-menu">
+                <li class="item-menu ativo" id="menuInicio" onclick="clickInicio()"><i class="fa-solid fa-house"></i>  Início</li>
+                <li class="item-menu" id="menuVenda" onclick="clickMenuVenda()"><i class="fa-solid fa-cart-shopping"></i>  Vendas</li>
+                <li class="item-menu" id="menuEstoque" onclick="clickMenuEstoque()"><i class="fa-brands fa-stack-overflow"></i>  Estoque</li>
+                <li class="item-menu" id="menuProdutos" onclick="clickMenuProdutos()"><i class="fa-brands fa-product-hunt"></i>  Produtos</li>
+                <li class="item-menu" id="menuClientes" onclick="clickMenuClientes()"><i class="fa-solid fa-user-group"></i>  Clientes</li>
+                <li class="item-menu" id="menuFiado" onclick="clickMenuFiado()"><i class="fa-solid fa-sack-dollar"></i>  Fiados</li>
+            </ul>
+        </nav>
+
+        <main class="conteudo">
+            <header class="cabecalho-produtos">
+                <div>
+                    <h2>Produtos</h2>
+                    <p>Cadastre e gerencie produtos</p>
+                </div>
+                <button class="btnNovoProduto" onclick="openNewProduct()">
+                    <span>+</span> Novo Produto
+                </button>
+                
+            <!-- O Modal de Produto -->
+            <div id="modalProduto" class="modal">
+                <div class="modal_content">
+                    <span class="close" onclick="closeNewProduct()">&times;</span>
+                    <h2>Novo Produto</h2>
+
+                    <form id="formNovoProduto">
+                        <!-- Linha Única: Nome -->
+                        <div class="form-group">
+                            <label>Nome do Produto *</label>
+                            <input type="text" id="produtoNome" placeholder="Ex: Coca-Cola 2L">
+                        </div>
+
+                        <!-- Linha: Categoria (apenas) -->
+                        <div class="form-group">
+                            <label>Categoria *</label>
+                            <select id="produtoCategoria">
+                                <option value="">Carregando categorias...</option>
+                            </select>
+                        </div>
+
+                        <!-- Linha Dupla: Preço e Estoque -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Preço (R$) *</label>
+                                <input type="number" id="produtoPreco" value="0" step="0.01" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Estoque Inicial *</label>
+                                <input type="number" id="produtoEstoque" value="0" min="0">
+                            </div>
+                        </div>
+
+                        <!-- Botões de Ação -->
+                        <div class="form-btns">
+                            <button type="submit" class="btn-save">Salvar</button>
+                            <button type="button" class="btn-cancel" onclick="closeNewProduct()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                    
+            </header>
+
+            <section class="container-tabela-produtos">
+                <table class="tabela-listagem">
+                    <thead>
+                        <tr>
+                            <th>PRODUTO</th>
+                            <th>CATEGORIA</th>
+                            <th>PREÇO</th>
+                            <th>ESTOQUE</th>
+                            <th>AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Cerveja Skol Lata 350ml</strong><br>
+                                <span class="sub-texto">unidade</span>
+                            </td>
+                            <td>Cerveja</td>
+                            <td>R$ 3.50</td>
+                            <td class="texto-verde">120 un.</td>
+                            <td>
+                                <div class="acoes-tabela">
+                                    <button class="botao-acao-tabela"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="botao-acao-tabela excluir"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Cerveja Brahma Lata 350ml</strong><br>
+                                <span class="sub-texto">unidade</span>
+                            </td>
+                            <td>Cerveja</td>
+                            <td>R$ 3.50</td>
+                            <td class="texto-verde">100 un.</td>
+                            <td>
+                                <div class="acoes-tabela">
+                                    <button class="botao-acao-tabela"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="botao-acao-tabela excluir"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Refrigerante Coca-Cola 2L</strong><br>
+                                <span class="sub-texto">unidade</span>
+                            </td>
+                            <td>Refrigerante</td>
+                            <td>R$ 8.90</td>
+                            <td class="texto-verde">50 un.</td>
+                            <td>
+                                <div class="acoes-tabela">
+                                    <button class="botao-acao-tabela"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="botao-acao-tabela excluir"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Vinho Tinto Seco 750ml</strong><br>
+                                <span class="sub-texto">unidade</span>
+                            </td>
+                            <td>Vinho</td>
+                            <td>R$ 35.00</td>
+                            <td class="texto-laranja">20 un.</td>
+                            <td>
+                                <div class="acoes-tabela">
+                                    <button class="botao-acao-tabela"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="botao-acao-tabela excluir"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+        <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+</html>

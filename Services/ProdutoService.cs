@@ -2,16 +2,37 @@ using ComercialMorro.API.DTOs;
 using ComercialMorro.API.Models;
 using ComercialMorro.API.Repositories.Interfaces;
 using ComercialMorro.API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using ComercialMorro.API.Data;
 
 namespace ComercialMorro.API.Services
 {
     public class ProdutoService : IProdutoService
     {
         private readonly IProdutoRepository _repository;
+        private readonly ApplicationDbContext _context;
 
-        public ProdutoService(IProdutoRepository repository)
+        public ProdutoService(IProdutoRepository repository, ApplicationDbContext context)
         {
             _repository = repository;
+            _context = context;
+        }
+        public async Task<IEnumerable<ProdutoDto>> BuscarAsync(string termo)
+        {
+            var produtos = await _context.Produtos
+                .Include(p => p.Categoria)
+                .Where(p => p.Descricao.Contains(termo))
+                .Take(20)
+                .ToListAsync();
+
+            return produtos.Select(p => new ProdutoDto
+            {
+                IdProduto = p.IdProduto,
+                Descricao = p.Descricao,
+                PrecoVenda = p.PrecoVenda,
+                Qtde = p.Qtde,
+                CategoriaDescricao = p.Categoria?.Descricao
+            });
         }
 
         public async Task<IEnumerable<ProdutoDto>> GetAllAsync()

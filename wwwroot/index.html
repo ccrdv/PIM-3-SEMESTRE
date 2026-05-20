@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comercial Morro - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+</head>
+
+<body>
+
+    <div class="container-principal">
+        <nav class="menu-lateral">
+            <div class="logo">
+                <h1>COMERCIAL MORRO</h1>
+                <span>Sistema de Vendas</span>
+            </div>
+            <ul class="lista-menu">
+                <li class="item-menu ativo" id="menuInicio" onclick="clickInicio()"><i class="fa-solid fa-house"></i>  Início</li>
+                <li class="item-menu" id="menuVenda" onclick="clickMenuVenda()"><i class="fa-solid fa-cart-shopping"></i>  Vendas</li>
+                <li class="item-menu" id="menuEstoque" onclick="clickMenuEstoque()"><i class="fa-brands fa-stack-overflow"></i>  Estoque</li>
+                <li class="item-menu" id="menuProdutos" onclick="clickMenuProdutos()"><i class="fa-brands fa-product-hunt"></i>  Produtos</li>
+                <li class="item-menu" id="menuClientes" onclick="clickMenuClientes()"><i class="fa-solid fa-user-group"></i>  Clientes</li>
+                <li class="item-menu" id="menuFiado" onclick="clickMenuFiado()"><i class="fa-solid fa-sack-dollar"></i>  Fiados</li>
+            </ul>
+        </nav>
+
+        <main class="conteudo">
+            <header class="cabecalho">
+                <h2>Dashboard</h2>
+                <p>Bem-vindo ao sistema de vendas</p>
+            </header>
+
+            <section class="grade-cards">
+                <div class="card-info">
+                    <div>
+                        <p class="titulo-card">Vendas Hoje</p>
+                        <span class="valor-card">0</span>
+                        <p class="subtexto-card">R$ 0,00</p>
+                    </div>
+                    <div class="icone verde"><i class="fa-solid fa-dollar-sign"></i></div>
+                </div>
+
+                <div class="card-info" onclick="clickMenuFiado()">
+                    <div>
+                        <p class="titulo-card">Total Fiado</p>
+                        <span class="valor-card">R$ 0,00</span>
+                        <p class="subtexto-card">A receber</p>
+                    </div>
+                    <div class="icone amarelo"><i id="iconFiado" class="fa-solid fa-sack-dollar"></i></div>
+                </div>
+
+                <div class="card-info" onclick="clickMenuEstoque()">
+                    <div>
+                        <p class="titulo-card">Produtos em Baixo Estoque</p>
+                        <span class="valor-card">0</span>
+                        <p class="subtexto-card">Requer atenção</p>
+                    </div>
+                    <div class="icone vermelho"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                </div>
+
+                <div class="card-info" onclick="clickMenuClientes()">
+                    <div>
+                        <p class="titulo-card">Clientes Cadastrados</p>
+                        <span class="valor-card">0</span>
+                        <p class="subtexto-card">Total</p>
+                    </div>
+                    <div class="icone azul-claro"><i id="iconCadastrados" class="fa-solid fa-user-group"></i></div>
+                </div>
+            </section>
+
+            <section class="secao-inferior">
+                <div class="bloco-acoes">
+                    <h3>Ações Rápidas</h3>
+                    <div class="botao-acao acao-verde" onclick="clickMenuVenda()">
+                        <strong>Nova Venda</strong>
+                        <p>Registrar venda à vista ou fiado</p>
+                    </div>
+                    <div class="botao-acao acao-azul" onclick="clickMenuProdutos()">
+                        <strong>Cadastrar Produto</strong>
+                        <p>Adicionar novo item ao estoque</p>
+                    </div>
+                    <div class="botao-acao acao-roxo" onclick="clickMenuClientes()">
+                        <strong>Cadastrar Cliente</strong>
+                        <p>Adicionar novo cliente</p>
+                    </div>
+                    <div class="botao-acao" style="background-color: #f3f4f6; border-left: 5px solid #8b5cf6; color: #5b21b6;" onclick="gerarRelatorioDia()">
+                            <strong>Relatório do Dia</strong>
+                            <p>Ver resumo de vendas e fiados do dia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bloco-vendas">
+                    <h3>Últimas Vendas</h3>
+                    <p class="vazio">Nenhuma venda registrada</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="modalRelatorio" class="modal">
+        <div class="modal_content" style="max-width: 500px;">
+            <span class="close" onclick="fecharModalRelatorio()">&times;</span>
+            <h2>Relatório do Dia</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;" id="dataRelatorio"></p>
+            
+            <div style="margin-bottom: 20px; padding: 15px; background: #f3f4f6; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span style="font-weight: bold;">Vendas à Vista:</span>
+                    <span id="vendasVista" style="color: #10b981; font-weight: bold;">R$ 0,00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span style="font-weight: bold;">Vendas Fiadas (novas):</span>
+                    <span id="vendasFiadas" style="color: #f59e0b; font-weight: bold;">R$ 0,00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 2px solid #e5e7eb;">
+                    <span style="font-weight: bold; font-size: 16px;">Total Geral:</span>
+                    <span id="totalGeralDia" style="color: #2563eb; font-weight: bold; font-size: 18px;">R$ 0,00</span>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="font-weight: bold;">Total a Receber (Fiados acumulados):</span>
+                    <span id="totalReceber" style="color: #d97706; font-weight: bold;">R$ 0,00</span>
+                </div>
+            </div>
+            
+            <div class="form-btns" style="margin-top: 20px;">
+                <button type="button" class="btn-cancel" onclick="fecharModalRelatorio()">Fechar</button>
+                <button type="button" class="btn-save" onclick="imprimirRelatorio()">Imprimir</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+        <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+
+</html>

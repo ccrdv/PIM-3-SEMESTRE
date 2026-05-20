@@ -22,6 +22,16 @@ namespace ComercialMorro.API.Controllers
             return Ok(produtos);
         }
 
+        [HttpGet("buscar")]
+        public async Task<IActionResult> Buscar([FromQuery] string termo)
+        {
+            if (string.IsNullOrWhiteSpace(termo))
+                return Ok(new List<ProdutoDto>());
+
+            var produtos = await _service.BuscarAsync(termo);
+            return Ok(produtos);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ProdutoDto>> GetById(int id)
         {

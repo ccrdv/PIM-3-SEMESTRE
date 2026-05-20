@@ -20,45 +20,66 @@ namespace ComercialMorro.API.Controllers
         public async Task<ActionResult<DashboardDto>> GetDashboard()
         {
             var hoje = DateTime.Today;
+            var amanha = hoje.AddDays(1);
 
-            var vendasHoje = await _context.Vendas
-                .AsNoTracking()
-                .Where(v => v.DataHora.Date == hoje)
+            // 1. Vendas do dia
+            var vendasDoDia = await _context.Vendas
+                .Where(v => v.DataHora >= hoje && v.DataHora < amanha)
                 .ToListAsync();
 
-            var totalFiado = await _context.Clientes
-                .AsNoTracking()
-                .SumAsync(c => c.TotalFiado);
+            decimal totalVendasDia = 0;
+            decimal totalVendasFiadasHoje = 0;
 
-            var baixoEstoque = await _context.Produtos
-                .AsNoTracking()
-                .Where(p => p.Qtde < 10)
-                .CountAsync();
+            if (vendasDoDia.Any())
+            {
+                totalVendasDia = vendasDoDia.Sum(v => v.TotalVenda);
+                totalVendasFiadasHoje = vendasDoDia.Where(v => v.ClienteIdCliente != null).Sum(v => v.TotalVenda);
+            }
 
-            var totalClientes = await _context.Clientes
-                .AsNoTracking()
-                .CountAsync();
+            // 2. Total Fiado
+            decimal totalFiado = await _context.Clientes.SumAsync(c => c.TotalFiado);
 
-            var ultimasVendas = await _context.Vendas
-                .AsNoTracking()
+            // 3. Baixo Estoque
+            int baixoEstoque = await _context.Produtos.CountAsync(p => p.Qtde < 10);
+
+            // 4. Total Clientes
+            int totalClientes = await _context.Clientes.CountAsync();
+
+            // 5. Últimas vendas
+            var ultimasVendas = new List<VendaSimplesDto>();
+
+            var ultimasVendasQuery = await _context.Vendas
+                .Include(v => v.Cliente)
+                    .ThenInclude(c => c!.Pessoa)
                 .OrderByDescending(v => v.DataHora)
                 .Take(5)
-                .Select(v => new VendaSimplesDto
-                {
-                    IdVenda = v.IdVenda,
-                    DataHora = v.DataHora,
-                    NomeCliente = "Venda",           // Temporário
-                    ValorTotal = v.TotalVenda
-                })
                 .ToListAsync();
+
+            foreach (var venda in ultimasVendasQuery)
+            {
+                string nomeCliente = "Venda à Vista";
+                if (venda.Cliente != null && venda.Cliente.Pessoa != null)
+                {
+                    nomeCliente = venda.Cliente.Pessoa.Nome;
+                }
+
+                ultimasVendas.Add(new VendaSimplesDto
+                {
+                    IdVenda = venda.IdVenda,
+                    DataHora = venda.DataHora,
+                    NomeCliente = nomeCliente,
+                    ValorTotal = venda.TotalVenda
+                });
+            }
 
             var dashboard = new DashboardDto
             {
                 VendasHoje = new VendasHojeDto
                 {
-                    QuantidadeVendas = vendasHoje.Count,
-                    TotalValor = vendasHoje.Sum(v => v.TotalVenda)
+                    QuantidadeVendas = vendasDoDia.Count,
+                    TotalValor = totalVendasDia
                 },
+                VendasFiadasHoje = totalVendasFiadasHoje,
                 TotalFiado = totalFiado,
                 ProdutosBaixoEstoque = baixoEstoque,
                 TotalClientes = totalClientes,

@@ -76,6 +76,18 @@ namespace ComercialMorro.API.Services
             venda.TotalDesconto = venda.Itens.Sum(i => i.ValorDesconto);
 
             await _vendaRepository.AddAsync(venda);
+            if (dto.IsFiado && dto.ClienteId.HasValue)
+            {
+                var cliente = await _context.Clientes
+                    .FirstOrDefaultAsync(c => c.IdCliente == dto.ClienteId.Value);
+
+                if (cliente != null)
+                {
+                    cliente.TotalFiado += totalVenda;
+                    _context.Clientes.Update(cliente);
+                    await _context.SaveChangesAsync();
+                }
+            }
 
             // Busca nome do cliente da tabela PESSOA
             string nomeCliente = "Venda à Vista";

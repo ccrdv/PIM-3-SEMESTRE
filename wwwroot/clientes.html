@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comercial Morro - Clientes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+</head>
+
+<body>
+
+    <div class="container-principal">
+        <nav class="menu-lateral">
+            <div class="logo">
+                <h1>COMERCIAL MORRO</h1>
+                <span>Sistema de Vendas</span>
+            </div>
+            <ul class="lista-menu">
+               <li class="item-menu ativo" id="menuInicio" onclick="clickInicio()"><i class="fa-solid fa-house"></i>  Início</li>
+                <li class="item-menu" id="menuVenda" onclick="clickMenuVenda()"><i class="fa-solid fa-cart-shopping"></i>  Vendas</li>
+                <li class="item-menu" id="menuEstoque" onclick="clickMenuEstoque()"><i class="fa-brands fa-stack-overflow"></i>  Estoque</li>
+                <li class="item-menu" id="menuProdutos" onclick="clickMenuProdutos()"><i class="fa-brands fa-product-hunt"></i>  Produtos</li>
+                <li class="item-menu" id="menuClientes" onclick="clickMenuClientes()"><i class="fa-solid fa-user-group"></i>  Clientes</li>
+                <li class="item-menu" id="menuFiado" onclick="clickMenuFiado()"><i class="fa-solid fa-sack-dollar"></i>  Fiados</li>
+            </ul>
+        </nav>
+
+        <main class="conteudo">
+            <header class="cabecalho-clientes">
+                <div>
+                    <h2>Clientes</h2>
+                    <p>Cadastre e gerencie clientes</p>
+                </div>
+                <button id="btnNovoCliente" onclick="openNewClient()">
+                    <span>+</span> Novo Cliente
+                </button>
+
+                <!-- tela de Cadastro -->
+                 <div id="modalCadastro" class="modal">
+                    <div class="modal_content">
+                        <span class="close">&times;</span>
+                        <h2>Novo Cliente</h2>
+                        
+                        <form>
+                            <label for="nomeCompleto"> Nome Completo</label>
+                            <input type="text">
+
+                            <label for="CPF"> CPF</label>
+                            <input type="text">
+
+                            <label for="Telefone"> Telefone</label>
+                            <input type="text">
+
+                            <label for="Endereco">Endereço</label>
+                            <input type="text">
+
+                            <div class="form-btns">
+                                <button type="submit" class="btn-save">Salvar</button>
+                                <button type="button" class="btn-cancel" onclick="closeNewClient()">Cancelar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                 </div>
+            </header>
+
+            <section class="grade-cards">
+                <div class="card-info">
+                    <div class="icone-quadrado azul-claro"><i class="fa-solid fa-user"></i></div>
+                    <div>
+                        <p class="titulo-card">Total de Clientes</p>
+                        <span class="valor-card" id="totalClientes">0</span>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="icone-quadrado amarelo"><i class="fa-solid fa-user"></i></div>
+                    <div>
+                        <p class="titulo-card">Com Débito</p>
+                        <span class="valor-card" id="clientesDebito">0</span>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="icone-quadrado vermelho"><i class="fa-solid fa-wallet"></i></div>
+                    <div>
+                        <p class="titulo-card">Total a Receber</p>
+                        <span class="valor-card" id="totalReceber">R$ 0,00</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="barra-busca-larga">
+                <input type="text" placeholder="Buscar por nome, CPF ou telefone..." class="campo-busca-clientes">
+            </section>
+
+            <section class="grade-listagem-clientes">
+                
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+wwwroot\clientes.html
+wwwroot\estoque.html
+wwwroot\fiado.html
+wwwroot\index.html
+wwwroot\login.html
+wwwroot\novaVenda.html
+wwwroot\produtos.html
+wwwroot\script.js
+wwwroot\style.css

@@ -12,6 +12,7 @@
         public bool IsFuncionario { get; set; } = false;
         public string? Cargo { get; set; }          // só usado se IsFuncionario = true
         public decimal? Salario { get; set; }       // só usado se IsFuncionario = true
+        public string? Status { get; set; } = "ATIVO"; // só usado se IsCliente = true
     }
 
     public class PessoaResponseDto
@@ -20,7 +21,12 @@
         public string Nome { get; set; } = string.Empty;
         public string Cpf { get; set; } = string.Empty;
         public string Telefone { get; set; } = string.Empty;
+        public string Endereco { get; set; } = string.Empty;
         public bool IsCliente { get; set; }
         public bool IsFuncionario { get; set; }
+        public decimal? TotalFiado { get; set; }     // só para clientes
+        public string? Status { get; set; }          // só para clientes
+        public string? Cargo { get; set; }           // só para funcionários
+        public decimal? Salario { get; set; }        // só para funcionários
     }
 }

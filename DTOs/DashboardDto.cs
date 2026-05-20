@@ -3,6 +3,8 @@
     public class DashboardDto
     {
         public VendasHojeDto VendasHoje { get; set; } = new();
+        public decimal VendasFiadasHoje { get; set; }
+        public decimal VendasVistaHoje { get; set; }
         public decimal TotalFiado { get; set; }
         public int ProdutosBaixoEstoque { get; set; }
         public int TotalClientes { get; set; }

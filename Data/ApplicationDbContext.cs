@@ -17,6 +17,7 @@ namespace ComercialMorro.API.Data
         public DbSet<Venda> Vendas { get; set; }
         public DbSet<ItemVenda> ItensVenda { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<FormaPagamento> FormaPagamentos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -108,6 +109,18 @@ namespace ComercialMorro.API.Data
                 entity.Property(i => i.ValorDesconto).HasColumnName("VALOR_DESCONTO").HasPrecision(12, 2);
                 entity.Property(i => i.ValorTotal).HasColumnName("VALOR_TOTAL").HasPrecision(12, 2);
             });
+            // ====================== FORMA_PAGAMENTO ======================
+            modelBuilder.Entity<FormaPagamento>(entity =>
+            {
+                entity.ToTable("FORMA_PAGAMENTO");
+                entity.HasKey(f => f.IdFormaPgto);
+                entity.Property(f => f.IdFormaPgto).HasColumnName("ID_FORMA_PGTO");
+                entity.Property(f => f.DataHoraPgto).HasColumnName("DATA_HORA_PGTO");
+                entity.Property(f => f.TotalPgto).HasColumnName("TOTAL_PGTO").HasPrecision(12, 2);
+                entity.Property(f => f.TipoPgto).HasColumnName("TIPO_PGTO").HasMaxLength(20);
+                entity.Property(f => f.IdVenda).HasColumnName("ID_VENDA");
+                entity.Property(f => f.IdTipoPgto).HasColumnName("ID_TIPO_PGTO");
+            });
 
             // ====================== USUARIO ======================
             modelBuilder.Entity<Usuario>(entity =>
@@ -115,8 +128,10 @@ namespace ComercialMorro.API.Data
                 entity.ToTable("USUARIO");
                 entity.HasKey(u => u.IdUsuario);
                 entity.Property(u => u.IdUsuario).HasColumnName("ID_USUARIO");
-                entity.Property(u => u.Username).HasColumnName("USERNAME").IsRequired();
-                entity.Property(u => u.Senha).HasColumnName("SENHA").IsRequired();
+                entity.Property(u => u.Username).HasColumnName("USERNAME");
+                entity.Property(u => u.Senha).HasColumnName("SENHA");
+                entity.Property(u => u.Status).HasColumnName("STATUS");
+                entity.Property(u => u.IdFuncionario).HasColumnName("ID_FUNCIONARIO");
             });
         }
     }
