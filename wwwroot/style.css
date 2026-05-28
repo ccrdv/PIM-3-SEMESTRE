@@ -317,7 +317,69 @@ h3 {
     color: #22c55e;
 }
 
+@media (max-width: 768px) {
+    .layout-venda {
+        flex-direction: column;
+        gap: 16px;
+    }
 
+    .coluna-esquerda,
+    .coluna-direita {
+        width: 100%;
+    }
+
+    .cartao-venda {
+        padding: 16px;
+    }
+
+    .linha-formulario {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .linha-formulario .grupo-campo {
+        width: 100%;
+    }
+
+    .botao-adicionar {
+        width: 100%;
+        height: auto;
+        padding: 12px;
+    }
+
+    .campo-texto,
+    .campo-selecao {
+        font-size: 16px;
+    }
+
+    .carrinho-container {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .conteudo {
+        padding: 16px;
+    }
+
+    .cartao-venda h3 {
+        font-size: 1rem;
+    }
+
+    .linha-total {
+        font-size: 0.9rem;
+    }
+
+    .destaque-total {
+        font-size: 1.1rem;
+    }
+
+    .botao-finalizar {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
 
 
 /* --- Estilos Específicos da Tela de Estoque --- */
@@ -1174,3 +1236,79 @@ input[type="text"]:focus {
         .escondido {
             display: none;
         }
+
+        /* Container do grid de clientes - limite de 3 cards por linha */
+.grade-listagem-clientes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Máximo 3 colunas */
+    gap: 20px;
+    margin-top: 25px;
+}
+
+/* Card do cliente - garantir que não ultrapasse */
+.card-perfil-cliente {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    min-width: 0; /* Importante: permite que o card respeite o grid */
+    overflow: hidden; /* Evita que conteúdo muito longo quebre o layout */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1024px) {
+    .grade-listagem-clientes {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas médias */
+    }
+}
+
+@media (max-width: 640px) {
+    .grade-listagem-clientes {
+        grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
+    }
+}
+
+/* Ajuste do conteúdo dentro do card para não quebrar */
+.detalhes-cliente p {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
+}
+
+/* Para o endereço que pode ser mais longo, permitir quebra de linha */
+.detalhes-cliente p:last-child {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Topo do card com nome e ações */
+.topo-card-cliente {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.info-nome {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0; /* Permite que o nome seja cortado se necessário */
+}
+
+.info-nome strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.acoes-tabela {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0; /* Evita que os botões encolham */
+}
