@@ -1,18 +1,31 @@
-﻿namespace ComercialMorro.API.DTOs
+﻿using System.Text.Json.Serialization;
+
+namespace ComercialMorro.API.DTOs
 {
     public class NovaVendaRequestDto
     {
-        public int? ClienteId { get; set; }           // Obrigatório se for fiado
+        [JsonPropertyName("clienteId")]
+        public int? ClienteId { get; set; }
+
+        [JsonPropertyName("itens")]
         public List<ItemVendaDto> Itens { get; set; } = new();
-        public string FormaPagamento { get; set; } = "Dinheiro"; // Dinheiro, Pix, Fiado
+
+        [JsonPropertyName("formaPagamento")]
+        public string FormaPagamento { get; set; } = "Dinheiro";
+
         public bool IsFiado => FormaPagamento?.ToUpper() == "FIADO";
     }
 
     public class ItemVendaDto
     {
+        [JsonPropertyName("produtoId")]
         public int ProdutoId { get; set; }
+
+        [JsonPropertyName("quantidade")]
         public int Quantidade { get; set; }
-        public decimal? Desconto { get; set; }        
+
+        [JsonPropertyName("desconto")]
+        public decimal? Desconto { get; set; }
     }
 
     public class VendaResponseDto
