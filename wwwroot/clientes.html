@@ -40,30 +40,37 @@
                 <!-- tela de Cadastro -->
                  <div id="modalCadastro" class="modal">
                     <div class="modal_content">
-                        <span class="close">&times;</span>
+                        <span class="close" onclick="closeNewClient()">&times;</span>
                         <h2>Novo Cliente</h2>
                         
-                        <form>
-                            <label for="nomeCompleto"> Nome Completo</label>
-                            <input type="text">
+                        <form id="formCliente" onsubmit="salvarCliente(event)">
+                            <div class="form-group">
+                                <label>Nome Completo *</label>
+                                <input type="text" id="clienteNome" required>
+                            </div>
 
-                            <label for="CPF"> CPF</label>
-                            <input type="text">
+                            <div class="form-group">
+                                <label>CPF *</label>
+                                <input type="text" id="clienteCpf" required>
+                            </div>
 
-                            <label for="Telefone"> Telefone</label>
-                            <input type="text">
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="text" id="clienteTelefone">
+                            </div>
 
-                            <label for="Endereco">Endereço</label>
-                            <input type="text">
+                            <div class="form-group">
+                                <label>Endereço</label>
+                                <input type="text" id="clienteEndereco">
+                            </div>
 
                             <div class="form-btns">
                                 <button type="submit" class="btn-save">Salvar</button>
                                 <button type="button" class="btn-cancel" onclick="closeNewClient()">Cancelar</button>
                             </div>
-
                         </form>
                     </div>
-                 </div>
+                </div>
             </header>
 
             <section class="grade-cards">
@@ -100,6 +107,27 @@
         </main>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Garantir que as funções do script.js estejam disponíveis e corrigir fechamento
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('modalCadastro');
+            
+            // Fechar ao clicar no "×"
+            const closeBtn = modal?.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.onclick = function() {
+                    closeNewClient();
+                };
+            }
+
+            // Fechar ao clicar fora do conteúdo do modal
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeNewClient();
+                }
+            });
+        });
+    </script>
     <div vw class="enabled">
     <div vw-access-button class="active"></div>
     <div vw-plugin-wrapper>

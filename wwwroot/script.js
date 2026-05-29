@@ -1641,7 +1641,6 @@ function removerDoCarrinho(index) {
     carrinho.splice(index, 1);
     atualizarCarrinho();
 }
-
 // Finalizar venda
 async function finalizarVenda() {
     if (!carrinho.length) {
@@ -1649,8 +1648,11 @@ async function finalizarVenda() {
         return;
     }
     
-    const formaPagamento = document.getElementById('formaPagamento')?.value;
-    const clienteId = formaPagamento === 'Fiado' ? parseInt(document.getElementById('clienteFiado')?.value) : null;
+    const formaPagamento = document.getElementById('formaPagamento')?.value || 'Dinheiro';
+    const clienteSelect = document.getElementById('clienteFiado');
+    const clienteId = (formaPagamento === 'Fiado' && clienteSelect) 
+        ? parseInt(clienteSelect.value) 
+        : null;
     
     if (formaPagamento === 'Fiado' && !clienteId) {
         alert('Selecione um cliente para venda fiada!');
@@ -1658,40 +1660,35 @@ async function finalizarVenda() {
     }
     
     const vendaData = {
-        itens: carrinho.map(item => ({
+        clienteId: clienteId,                 
+        formaPagamento: formaPagamento,
+        itens: carrinho.map(item => ({         
             produtoId: item.idProduto,
             quantidade: item.quantidade,
             desconto: item.desconto || 0
-        })),
-        formaPagamento: formaPagamento,
-        clienteId: clienteId
+        }))
     };
+    console.log('JSON enviado:', JSON.stringify(vendaData, null, 2));
     
     try {
         const response = await fetch(`${API_BASE_URL}/Venda`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(vendaData)
         });
         
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.mensagem || 'Erro ao finalizar venda');
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.mensagem || 'Erro ao finalizar venda');
         }
         
         const result = await response.json();
         alert(`Venda finalizada com sucesso! Nº ${result.idVenda}`);
         
-        // Limpar carrinho
         carrinho = [];
         atualizarCarrinho();
-        
-        // Recarregar produtos para atualizar estoque
         carregarProdutosVenda();
         
-        // Se for fiado, recarregar fiados
         if (formaPagamento === 'Fiado' && typeof carregarFiados === 'function') {
             carregarFiados();
         }
@@ -1701,7 +1698,6 @@ async function finalizarVenda() {
         alert('Erro ao finalizar venda: ' + error.message);
     }
 }
-
 // Buscar produtos em tempo real
 function buscarProdutosVenda() {
     const termo = document.getElementById('buscarProduto')?.value.toLowerCase();
