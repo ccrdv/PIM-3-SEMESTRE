@@ -13,7 +13,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "login.html", // ← MUDAR PARA login.html
+      "launchUrl": "login.html",
       "applicationUrl": "http://localhost:5012",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -23,7 +23,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "login.html", // ← MUDAR PARA login.html
+      "launchUrl": "login.html",
       "applicationUrl": "https://localhost:7125;http://localhost:5012",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
