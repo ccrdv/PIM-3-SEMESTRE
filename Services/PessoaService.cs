@@ -24,15 +24,19 @@ namespace ComercialMorro.API.Services
                 if (dto.IsCliente && dto.IsFuncionario)
                     throw new Exception("Uma pessoa não pode ser cliente e funcionário ao mesmo tempo");
 
+                // 1. Criar a Pessoa
                 var pessoa = new Pessoa
                 {
                     Nome = dto.Nome ?? string.Empty,
                     Cpf = dto.Cpf ?? string.Empty,
-                    Telefone = dto.Telefone ?? "Não informado",  // Valor padrão se null
-                    Endereco = dto.Endereco ?? "Não informado"   // Valor padrão se null
+                    Telefone = dto.Telefone ?? string.Empty,
+                    Endereco = dto.Endereco ?? string.Empty
                 };
 
-                // Se for cliente, criar registro na tabela CLIENTE
+                _context.Pessoas.Add(pessoa);
+                await _context.SaveChangesAsync();   // Gera ID_PESSOA
+
+                // 2. Criar o Cliente (se for cliente)
                 if (dto.IsCliente)
                 {
                     var cliente = new Cliente
@@ -40,14 +44,16 @@ namespace ComercialMorro.API.Services
                         TotalFiado = 0,
                         Status = dto.Status ?? "ATIVO"
                     };
-                    _context.Clientes.Add(cliente);
-                    await _context.SaveChangesAsync();
 
+                    _context.Clientes.Add(cliente);
+                    await _context.SaveChangesAsync();   // Gera ID_CLIENTE naturalmente
+
+                    // Vincula a Pessoa ao Cliente
                     pessoa.ClienteIdCliente = cliente.IdCliente;
+                    _context.Pessoas.Update(pessoa);
+                    await _context.SaveChangesAsync();
                 }
 
-                _context.Pessoas.Add(pessoa);
-                await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
 
                 return new PessoaResponseDto
@@ -55,22 +61,20 @@ namespace ComercialMorro.API.Services
                     IdPessoa = pessoa.IdPessoa,
                     Nome = pessoa.Nome,
                     Cpf = pessoa.Cpf,
-                    Telefone = pessoa.Telefone ?? "Não informado",
-                    Endereco = pessoa.Endereco ?? "Não informado",
+                    Telefone = pessoa.Telefone,
+                    Endereco = pessoa.Endereco,
                     IsCliente = pessoa.ClienteIdCliente.HasValue,
-                    IsFuncionario = pessoa.FuncionarioIdFuncionario.HasValue,
                     TotalFiado = 0,
-                    Status = dto.Status ?? "ATIVO",
-                    Cargo = dto.Cargo,
-                    Salario = dto.Salario
+                    Status = dto.Status ?? "ATIVO"
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                throw;
+                throw new Exception($"Erro ao criar cliente: {ex.InnerException?.Message ?? ex.Message}");
             }
         }
+
         public async Task<IEnumerable<PessoaResponseDto>> GetAllAsync()
         {
             var pessoas = await _context.Pessoas
